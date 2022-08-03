@@ -137,18 +137,19 @@ class EloquentBelongsToManyTest extends DatabaseTestCase
 
         $post->tagsWithCustomPivot()->attach($tag->id);
 
-        $this->assertInstanceOf(PostTagPivot::class, $post->tagsWithCustomPivot[0]->pivot);
-        $this->assertSame('1507630210', $post->tagsWithCustomPivot[0]->pivot->created_at);
+        $this->assertInstanceOf(PostTagPivot::class, $post->tagsWithCustomPivot[0]->details);
+        $this->assertSame('1507630210', $post->tagsWithCustomPivot[0]->details->created_at);
 
-        $this->assertInstanceOf(PostTagPivot::class, $post->tagsWithCustomPivotClass[0]->pivot);
+        $this->assertInstanceOf(PostTagPivot::class, $post->tagsWithCustomPivotClass[0]->details);
         $this->assertSame('posts_tags', $post->tagsWithCustomPivotClass()->getTable());
 
         $this->assertEquals([
             'post_id' => '1',
             'tag_id' => '1',
+            'flag' => '',
         ], $post->tagsWithCustomAccessor[0]->tag->toArray());
 
-        $pivot = $post->tagsWithCustomPivot[0]->pivot;
+        $pivot = $post->tagsWithCustomPivot[0]->details;
         $pivot->tag_id = 2;
         $pivot->save();
 
@@ -199,7 +200,7 @@ class EloquentBelongsToManyTest extends DatabaseTestCase
             $post->tagsWithCustomExtraPivot()->updateExistingPivot($tag->id, ['flag' => 'exclude'])
         );
         foreach ($post->tagsWithCustomExtraPivot as $tag) {
-            $this->assertSame('exclude', $tag->pivot->flag);
+            $this->assertSame('exclude', $tag->details->flag);
         }
 
         // Test on non-existent pivot
@@ -232,9 +233,9 @@ class EloquentBelongsToManyTest extends DatabaseTestCase
             $post->tagsWithCustomExtraPivot()->updateExistingPivot($tag->id, ['flag' => 'exclude'])
         );
         foreach ($post->tagsWithCustomExtraPivot as $tag) {
-            $this->assertSame('exclude', $tag->pivot->flag);
-            $this->assertSame('2017-10-10 10:10:10', $tag->pivot->getAttributes()['created_at']);
-            $this->assertSame('2017-10-10 10:10:20', $tag->pivot->getAttributes()['updated_at']); // +10 seconds
+            $this->assertSame('exclude', $tag->details->flag);
+            $this->assertSame('2017-10-10 10:10:10', $tag->details->getAttributes()['created_at']);
+            $this->assertSame('2017-10-10 10:10:20', $tag->details->getAttributes()['updated_at']); // +10 seconds
         }
     }
 
@@ -1350,6 +1351,8 @@ class UserPostPivot extends Pivot
 class PostTagPivot extends Pivot
 {
     protected $table = 'posts_tags';
+    protected $alias = 'details';
+    protected $withColumns = ['flag'];
 
     public function getCreatedAtAttribute($value)
     {
