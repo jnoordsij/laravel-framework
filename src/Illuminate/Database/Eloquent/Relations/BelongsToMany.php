@@ -334,9 +334,9 @@ class BelongsToMany extends Relation
     {
         $this->using = $class;
 
-        $this->pivotColumns = array_merge(
-            $this->pivotColumns, (new $this->using)->getDefaultColumns(),
-        );
+        $pivot = (new $this->using);
+        $this->withPivot($pivot->getDefaultColumns());
+        $this->as($pivot->getAlias());
 
         return $this;
     }

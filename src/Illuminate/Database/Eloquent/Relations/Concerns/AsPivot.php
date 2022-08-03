@@ -29,6 +29,13 @@ trait AsPivot
     protected $relatedKey;
 
     /**
+     * The default alias to name the pivot on the parent model.
+     *
+     * @var string
+     */
+    protected $alias = 'pivot';
+
+    /**
      * The columns to eager load on every query.
      *
      * @var array
@@ -346,5 +353,15 @@ trait AsPivot
     public function getDefaultColumns()
     {
         return $this->withColumns;
+    }
+
+    /**
+     * Get the default alias to name the pivot on the parent model.
+     *
+     * @return string
+     */
+    public function getAlias()
+    {
+        return $this->alias;
     }
 }
