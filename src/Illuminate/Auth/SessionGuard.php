@@ -131,8 +131,8 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
     public function __construct($name,
                                 UserProvider $provider,
                                 Session $session,
-                                Request $request = null,
-                                Timebox $timebox = null,
+                                ?\Symfony\Component\HttpFoundation\Request $request = null,
+                                ?\Illuminate\Support\Timebox $timebox = null,
                                 bool $rehashOnLogin = true)
     {
         $this->name = $name;

@@ -2338,7 +2338,7 @@ class RouteTestAnotherControllerWithParameterStub extends Controller
         //
     }
 
-    public function withModels(Request $request, RoutingTestUserModel $user, $defaultNull = null, RoutingTestTeamModel $team = null)
+    public function withModels(Request $request, RoutingTestUserModel $user, $defaultNull = null, ?RoutingTestTeamModel $team = null)
     {
         //
     }
