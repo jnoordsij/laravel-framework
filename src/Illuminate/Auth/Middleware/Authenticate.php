@@ -4,36 +4,18 @@ namespace Illuminate\Auth\Middleware;
 
 use Closure;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Authenticate implements AuthenticatesRequests
 {
-    /**
-     * The authentication factory instance.
-     *
-     * @var \Illuminate\Contracts\Auth\Factory
-     */
-    protected $auth;
-
     /**
      * The callback that should be used to generate the authentication redirect path.
      *
      * @var callable
      */
     protected static $redirectToCallback;
-
-    /**
-     * Create a new middleware instance.
-     *
-     * @param  \Illuminate\Contracts\Auth\Factory  $auth
-     * @return void
-     */
-    public function __construct(Auth $auth)
-    {
-        $this->auth = $auth;
-    }
 
     /**
      * Specify the guards for the middleware.
@@ -80,8 +62,8 @@ class Authenticate implements AuthenticatesRequests
         }
 
         foreach ($guards as $guard) {
-            if ($this->auth->guard($guard)->check()) {
-                return $this->auth->shouldUse($guard);
+            if (Auth::guard($guard)->check()) {
+                return Auth::shouldUse($guard);
             }
         }
 

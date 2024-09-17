@@ -3,29 +3,11 @@
 namespace Illuminate\Auth\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 
 class Authorize
 {
-    /**
-     * The gate instance.
-     *
-     * @var \Illuminate\Contracts\Auth\Access\Gate
-     */
-    protected $gate;
-
-    /**
-     * Create a new middleware instance.
-     *
-     * @param  \Illuminate\Contracts\Auth\Access\Gate  $gate
-     * @return void
-     */
-    public function __construct(Gate $gate)
-    {
-        $this->gate = $gate;
-    }
-
     /**
      * Specify the ability and models for the middleware.
      *
@@ -52,7 +34,7 @@ class Authorize
      */
     public function handle($request, Closure $next, $ability, ...$models)
     {
-        $this->gate->authorize($ability, $this->getGateArguments($request, $models));
+        Gate::authorize($ability, $this->getGateArguments($request, $models));
 
         return $next($request);
     }
