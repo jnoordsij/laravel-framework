@@ -3,6 +3,7 @@
 namespace Illuminate\Support;
 
 use InvalidArgumentException;
+use Uri\Rfc3986\Uri;
 
 class ConfigurationUrlParser
 {
@@ -39,46 +40,44 @@ class ConfigurationUrlParser
             return $config;
         }
 
-        $rawComponents = $this->parseUrl($url);
-
-        $decodedComponents = $this->parseStringsToNativeTypes(
-            array_map(rawurldecode(...), $rawComponents)
-        );
+        $parsedUrl = $this->parseUrl($url);
 
         return array_merge(
             $config,
-            $this->getPrimaryOptions($decodedComponents),
-            $this->getQueryOptions($rawComponents)
+            $this->getPrimaryOptions($parsedUrl),
+            $this->getQueryOptions($parsedUrl)
         );
     }
 
     /**
      * Get the primary database connection options.
      *
-     * @param  array  $url
+     * @param  Uri  $url
      * @return array
      */
     protected function getPrimaryOptions($url)
     {
-        return array_filter([
+        $options = array_filter([
             'driver' => $this->getDriver($url),
             'database' => $this->getDatabase($url),
-            'host' => $url['host'] ?? null,
-            'port' => $url['port'] ?? null,
-            'username' => $url['user'] ?? null,
-            'password' => $url['pass'] ?? null,
-        ], fn ($value) => ! is_null($value));
+            'host' => ($host = $url->getHost()) === 'null' ? null : $host,
+            'port' => $url->getPort(),
+            'username' => $url->getUsername(),
+            'password' => $url->getPassword(),
+        ], fn ($value) => $value !== null && $value !== '');
+
+        return array_map(rawurldecode(...), $options);
     }
 
     /**
      * Get the database driver from the URL.
      *
-     * @param  array  $url
+     * @param  Uri  $url
      * @return string|null
      */
     protected function getDriver($url)
     {
-        $alias = $url['scheme'] ?? null;
+        $alias = $url->getScheme();
 
         if (! $alias) {
             return;
@@ -90,12 +89,12 @@ class ConfigurationUrlParser
     /**
      * Get the database name from the URL.
      *
-     * @param  array  $url
+     * @param  Uri  $url
      * @return string|null
      */
     protected function getDatabase($url)
     {
-        $path = $url['path'] ?? null;
+        $path = $url->getPath();
 
         return $path && $path !== '/' ? substr($path, 1) : null;
     }
@@ -103,12 +102,12 @@ class ConfigurationUrlParser
     /**
      * Get all of the additional database options from the query string.
      *
-     * @param  array  $url
+     * @param  Uri  $url
      * @return array
      */
     protected function getQueryOptions($url)
     {
-        $queryString = $url['query'] ?? null;
+        $queryString = $url->getQuery();
 
         if (! $queryString) {
             return [];
@@ -125,7 +124,7 @@ class ConfigurationUrlParser
      * Parse the string URL to an array of components.
      *
      * @param  string  $url
-     * @return array
+     * @return Uri
      *
      * @throws \InvalidArgumentException
      */
@@ -133,9 +132,9 @@ class ConfigurationUrlParser
     {
         $url = preg_replace('#^(sqlite3?):///#', '$1://null/', $url);
 
-        $parsedUrl = parse_url($url);
+        $parsedUrl = Uri::parse($url);
 
-        if ($parsedUrl === false) {
+        if ($parsedUrl === null) {
             throw new InvalidArgumentException('The database configuration URL is malformed.');
         }
 
