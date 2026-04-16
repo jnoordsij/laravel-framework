@@ -54,7 +54,6 @@
         "symfony/http-kernel": "^8.0.0",
         "symfony/mailer": "^8.0.0",
         "symfony/mime": "^8.0.0",
-        "symfony/polyfill-php84": "^1.33",
         "symfony/polyfill-php85": "^1.33",
         "symfony/process": "^7.4.5 || ^8.0.5",
         "symfony/routing": "^8.0.0",
@@ -220,7 +219,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "13.0.x-dev"
+            "dev-master": "14.0.x-dev"
         }
     }
 }
