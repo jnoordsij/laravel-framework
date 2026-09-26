@@ -71,6 +71,11 @@ jobs:
           redis-libs: liblz4-dev, liblzf-dev, libzstd-dev
           composer-command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress --with="phpunit/phpunit:~${{ matrix.phpunit }}"
 
+      - name: AVIF support
+        run: |
+          sudo apt update
+          sudo apt install libheif-plugin-aomenc -y
+
       - name: Execute tests
         run: vendor/bin/phpunit --display-deprecation ${{ matrix.stability == 'prefer-stable' && '--fail-on-deprecation' || '' }} --no-coverage
         env:
