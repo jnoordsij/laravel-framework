@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 env:
-  PHP_SHARED_EXTENSIONS: apcu, ctype, curl, dom, ftp, fileinfo, filter, gd, gmp, hash, igbinary, imagick, intl, libxml, lzf, lz4, mbstring, memcached, msgpack, odbc, openssl, pdo, pdo_mysql, pdo_pgsql, pdo_sqlite, pdo_sqlsrv, redis, session, sqlite, tokenizer, zip, zstd, :php-psr
+  PHP_SHARED_EXTENSIONS: apcu, ctype, curl, dom, ftp, fileinfo, filter, gd, gmp, hash, igbinary, imagick, intl, libxml, lzf, lz4, mbstring, memcached, msgpack, odbc, openssl, pdo, pdo_mysql, pdo_pgsql, pdo_sqlite, pdo_sqlsrv, redis, session, sqlite, tokenizer, zip, zstd
   PHP_LINUX_EXTENSIONS: pcntl, posix
   PHP_WINDOWS_EXTENSIONS:
 

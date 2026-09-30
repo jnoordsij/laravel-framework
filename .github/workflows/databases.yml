@@ -36,7 +36,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -69,7 +69,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -101,7 +101,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -133,7 +133,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -165,7 +165,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -197,7 +197,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -230,7 +230,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_pgsql, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_pgsql
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -265,7 +265,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_pgsql, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_pgsql
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -300,7 +300,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_pgsql, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_pgsql
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -333,7 +333,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlsrv, pdo, pdo_sqlsrv, odbc, pdo_odbc, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlsrv, pdo, pdo_sqlsrv, odbc, pdo_odbc
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -367,7 +367,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlsrv, pdo, pdo_sqlsrv, odbc, pdo_odbc, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlsrv, pdo, pdo_sqlsrv, odbc, pdo_odbc
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -392,7 +392,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
 
       - name: Setup SQLite Database
         run: php vendor/bin/testbench package:create-sqlite-db
