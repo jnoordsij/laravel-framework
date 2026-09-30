@@ -13,9 +13,9 @@ permissions:
   contents: read
 
 env:
-  PHP_SHARED_EXTENSIONS: curl, dom, gd, gmp, igbinary, imagick, libxml, mbstring, memcached, msgpack, pdo, pdo_sqlite, redis, sqlite, zip, :php-psr
+  PHP_SHARED_EXTENSIONS: curl, dom, gd, gmp, igbinary, imagick, libxml, mbstring, memcached, msgpack, pdo, pdo_sqlite, redis, sqlite, zip, :php-psr, ftp, fileinfo, intl, pdo_mysql
   PHP_LINUX_EXTENSIONS: pcntl
-  PHP_WINDOWS_EXTENSIONS: ftp, fileinfo, intl, pdo_mysql
+  PHP_WINDOWS_EXTENSIONS: ''
 
 jobs:
   linux_tests:
