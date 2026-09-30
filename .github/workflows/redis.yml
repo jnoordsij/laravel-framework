@@ -38,8 +38,6 @@ jobs:
 
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
-        with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
 
       - name: Execute Cache tests
         run: vendor/bin/phpunit tests/Integration/Cache
@@ -81,8 +79,6 @@ jobs:
 
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
-        with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
 
       - name: Execute Redis tests
         run: vendor/bin/phpunit tests/Redis
@@ -106,8 +102,6 @@ jobs:
 
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
-        with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
 
       - name: Install Redis Server
         run: |

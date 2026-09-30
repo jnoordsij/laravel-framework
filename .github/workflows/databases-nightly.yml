@@ -35,7 +35,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
+          extensions: pdo_mysql
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
@@ -70,7 +70,7 @@ jobs:
       - name: Setup PHP project
         uses: ./.github/actions/setup-php-project
         with:
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
+          extensions: pdo_mysql
 
       - name: Execute tests
         run: vendor/bin/phpunit tests/Integration/Database
