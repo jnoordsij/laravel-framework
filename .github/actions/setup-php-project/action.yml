@@ -41,7 +41,7 @@ runs:
       uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
       with:
         php-version: ${{ inputs.php-version }}
-        extensions: ${{ inputs.extensions }}
+        extensions: none, ctype, curl, dom, hash, libxml, mbstring, pcntl, pdo, session, tokenizer, zip, ${{ inputs.extensions }}
         ini-values: ${{ inputs.ini-values }}
         tools: ${{ inputs.tools }}
         coverage: ${{ inputs.coverage }}
